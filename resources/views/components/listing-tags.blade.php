@@ -1,7 +1,8 @@
 @props(['tagsCsv'])
 
 @php
-    $tags = explode(',', $tagsCsv);    
+    $tags = explode(',', $tagsCsv);
+    $tags = str_replace(' ', '', $tags);   
 @endphp
 
 <ul class="flex">
