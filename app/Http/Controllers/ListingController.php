@@ -43,6 +43,9 @@ class ListingController extends Controller
             'description'   =>  'required'
         ]);
 
-        return redirect('/');
+        //The form fields to be added to the database must be made "fillable".  The logic for that is in the model "Listing.php".
+        Listing::create($formFields);
+
+        return redirect('/')->with('message', 'Listing created successfully');
     }
 }
