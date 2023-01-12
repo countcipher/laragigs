@@ -19,6 +19,7 @@
             >
             <input
                 type="text"
+                value="{{old('company')}}"
                 class="border border-gray-200 rounded p-2 w-full"
                 name="company"
             />
@@ -34,6 +35,7 @@
             >
             <input
                 type="text"
+                value="{{old('title')}}"
                 class="border border-gray-200 rounded p-2 w-full"
                 name="title"
                 placeholder="Example: Senior Laravel Developer"
@@ -53,6 +55,7 @@
             >
             <input
                 type="text"
+                value="{{old('location')}}"
                 class="border border-gray-200 rounded p-2 w-full"
                 name="location"
                 placeholder="Example: Remote, Boston MA, etc"
@@ -69,6 +72,7 @@
             >
             <input
                 type="text"
+                value="{{old('email')}}"
                 class="border border-gray-200 rounded p-2 w-full"
                 name="email"
             />
@@ -87,6 +91,7 @@
             </label>
             <input
                 type="text"
+                value="{{old('website')}}"
                 class="border border-gray-200 rounded p-2 w-full"
                 name="website"
             />
@@ -102,6 +107,7 @@
             </label>
             <input
                 type="text"
+                value="{{old('tags')}}"
                 class="border border-gray-200 rounded p-2 w-full"
                 name="tags"
                 placeholder="Example: Laravel, Backend, Postgres, etc"
@@ -135,7 +141,7 @@
                 name="description"
                 rows="10"
                 placeholder="Include tasks, requirements, salary, etc"
-            ></textarea>
+            >{{old('description')}}</textarea>
 
             @error('description')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
