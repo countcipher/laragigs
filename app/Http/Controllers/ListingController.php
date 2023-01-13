@@ -42,7 +42,7 @@ class ListingController extends Controller
 
         /**
          * In the "filesystems.php" file, 'default' => env('FILESYSTEM_DISK', 'local') was changed to 'default' => env('FILESYSTEM_DISK', 'public'). This is used to store uploaded images into the 'public' folder.
-         * Use the command 'php artisan storage:link' to make what goes into this folder accessible publicly.
+         * Use the command 'php artisan storage:link' to make what goes into this folder accessible publicly (symlink).
          */
 
          //Be sure all fields being added to the database are allowed (listed as 'protected $fillable') in the associated model.  In this case
@@ -71,5 +71,30 @@ class ListingController extends Controller
         Listing::create($formFields);
 
         return redirect('/')->with('message', 'Listing created successfully');
+    }
+
+    // Show Edit Form
+    public function edit(Listing $listing){
+        return view('listings.edit', ['listing' => $listing]);
+    }
+
+    //Update gig
+    public function update(Request $request, Listing $listing){
+        $formFields = $request->validate([
+            'title'         =>  'required',
+            'company'       =>  'required',
+            'location'      =>  'required',
+            'website'       =>  'required',
+            'email'         =>  ['required', 'email'],
+            'tags'          =>  'required',
+            'description'   =>  'required'
+        ]);
+
+        if($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+        $listing->update($formFields);
+
+        return back()->with('message', 'Listing updated successfully');
     }
 }
