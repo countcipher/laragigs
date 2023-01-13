@@ -10,7 +10,7 @@ class Listing extends Model
     use HasFactory;
 
     //Here is where the data added to the database is made fillable (it can be mass added to the dbase)
-    protected $fillable = ['title', 'company', 'location', 'website', 'email', 'tags', 'description'];
+    protected $fillable = ['title', 'company', 'location', 'website', 'email', 'tags', 'description', 'logo'];
 
     public function scopeFilter($query, array $filters){
         if($filters['tag'] ?? false){
