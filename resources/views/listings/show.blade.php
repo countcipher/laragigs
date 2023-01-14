@@ -40,8 +40,12 @@
                                     Contact Employer</a
                                 >
 
+                                {{-- 
+                                    Putting "//" in front of the href value allows the link to use the same protocol as the current page.  If this isn't in place, the link will be to 'localhost' followed by the link.
+                                    --}}
+
                                 <a
-                                    href="{{$listing->website}}"
+                                    href="//{{$listing->website}}"
                                     target="_blank"
                                     class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
                                     ><i class="fa-solid fa-globe"></i> Visit
@@ -52,7 +56,7 @@
                     </div>
                 </x-card>
 
-                <x-card class="mt-4 p-2 flex space-x-6">
+                {{-- <x-card class="mt-4 p-2 flex space-x-6">
                     <a href="/listings/{{$listing->id}}/edit">
                         <i class="fa-solid fa-pencil"></i> Edit
                     </a>
@@ -65,7 +69,7 @@
                             <i class="fa-solid fa-trash"></i> Delete
                         </button>
                     </form>
-                </x-card>
+                </x-card> --}}
             </div>
 
 @endsection

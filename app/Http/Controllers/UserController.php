@@ -41,8 +41,6 @@ class UserController extends Controller
         //Creates User
         $user = User::create($formFields);
 
-        //User::create($formFields);
-
         //Login
         auth()->login($user);
 
@@ -58,5 +56,26 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/')->with('message', 'User logged out');
+    }
+
+    //Show Login Form
+    public function login(){
+        return view('users.login');
+    }
+
+    //Authenticate User
+    public function authenticate(Request $request){
+        $formFields = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+
+        if(auth()->attempt($formFields)){
+            $request->session()->regenerate();
+
+            return redirect('/')->with('messge', 'You are now logged in');
+        }
+
+        return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
     }
 }
